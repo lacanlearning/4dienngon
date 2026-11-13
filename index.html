@@ -776,8 +776,7 @@ function nextD(){const i=ORDER.indexOf(cur);setDisc(ORDER[(i<0?0:i+1)%4])}
 function btn(t,f){const b=document.createElement('button');b.textContent=t;b.onclick=()=>f(b);bar.appendChild(b)}
 btn('↺ Xoay một phần tư',nextD);
 btn('Khái niệm',()=>{view={type:'cons'};render()});
-let auto=true,play=null;
-btn('Tự xoay: bật',b=>{auto=!auto;b.textContent='Tự xoay: '+(auto?'bật':'tắt')});
+let play=null;
 btn('▶ Phát tuần tự',b=>{if(play){clearInterval(play);play=null;b.textContent='▶ Phát tuần tự'}else{nextD();play=setInterval(nextD,6500);b.textContent='⏸ Tạm dừng'}});
 
 // ---------- interaction ----------
@@ -799,7 +798,6 @@ addEventListener('resize',resize);resize();
 const tmp=new THREE.Color();
 function frame(){
   const t=clk.getElapsedTime();
-  if(auto&&!drag)yaw+=.0022;
   cam.position.set(Math.sin(yaw)*Math.cos(pitch)*dist,Math.sin(pitch)*dist,Math.cos(yaw)*Math.cos(pitch)*dist);cam.lookAt(0,0,0);
   root.rotation.x=-.5;stars.rotation.y=t*.012;stars.rotation.x=t*.004;
   TK.forEach((k,i)=>{
@@ -848,6 +846,45 @@ const FN={"master": {"L": ["Gạch chặn $ chạm tới S₁: ông chủ không
 for(const k in FN){FRACTION_INFO[k].fracLeft.text=FN[k].L[0];FRACTION_INFO[k].fracLeft.example=FN[k].L[1];FRACTION_INFO[k].fracRight.text=FN[k].R[0];FRACTION_INFO[k].fracRight.example=FN[k].R[1]}
 AR.fracLeft.s='Rào cản giữa tác nhân và sự thật';AR.fracLeft.t=["Gạch phân số là rào cản giữa hàng trên và hàng dưới, giữa bề mặt ý thức (tác nhân, cái khác) và nền ẩn (sự thật, sản phẩm). Ở cột trái, đó là sự kháng cự ngăn sự thật tác động thẳng lên tác nhân.", "Chính nhờ rào cản, diễn ngôn mới ổn định, tức là che giấu được sự thật. Khi rào cản biến mất như trong diễn ngôn Tư bản, diễn ngôn mất ổn định: nó chạy quá nhanh và tự thiêu."];
 AR.fracRight.s='Rào cản giữa cái khác và sản phẩm';AR.fracRight.t=["Gạch phân số là rào cản giữa hàng trên và hàng dưới, giữa bề mặt ý thức (tác nhân, cái khác) và nền ẩn (sự thật, sản phẩm). Ở cột phải, đó là sự kháng cự ngăn sản phẩm quay thẳng lại cái khác.", "Chính nhờ rào cản, diễn ngôn mới ổn định, tức là che giấu được sự thật. Khi rào cản biến mất như trong diễn ngôn Tư bản, diễn ngôn mất ổn định: nó chạy quá nhanh và tự thiêu."];
+// ---- Nội dung panel chính (bản bổ sung, đã sửa ký hiệu) ----
+const PANEL_MAIN={
+ "master": {
+  "tag": "Mệnh lệnh tuôn ra từ miệng kẻ mạnh, kẻ yếu cắm cúi phục tùng, và nỗi bất an của kẻ nắm quyền bị chôn vùi dưới lớp vỏ bọc độc đoán.",
+  "d": "Diễn ngôn Chủ nhân thể hiện quyền lực tuyệt đối của cái biểu đạt-chủ (S₁ - ông chủ) đối với Tri thức/Kỹ thuật (S₂ - người nô lệ). Ông chủ không cần giải thích lý do, chỉ cần ra lệnh. Sự thật bị che giấu ở đây là $ (ông chủ thực chất cũng là một chủ thể bị chia cắt, đầy bất an và thiếu hụt). Sản phẩm thặng dư là a (của cải, khoái cảm) mà ông chủ chiếm đoạt từ mồ hôi nước mắt của kẻ khác.",
+  "im": "S₁ → S₂: Mệnh lệnh của kẻ mạnh không thể tự động tạo ra tri thức hay sự thật; nó chỉ tạo ra sự phục tùng mù quáng.",
+  "imp": "a // $: Không thể loại bỏ hoàn toàn sự bất an, sự chia cắt của kẻ nắm quyền; quyền lực không thể lấp đầy khoảng trống nội tâm của chính ông chủ.",
+  "ex": "Một CEO trong cuộc họp đập bàn: “Tôi không cần biết các người làm thế nào, nhưng quý này doanh thu phải tăng 20%!” (S₁). Các kỹ sư và nhân viên (S₂) cắm cúi làm việc, tìm ra các giải pháp. Sự thật là CEO đang hoảng loạn vì hội đồng quản trị đang gây sức ép ($ bị che giấu). Sản phẩm cuối cùng là lợi nhuận và sự xa hoa (a) mà CEO được hưởng, trong khi nhân viên kiệt sức."
+ },
+ "university": {
+  "tag": "Con người bị biến thành những con số vô hồn trên bàn thờ tri thức, trong khi sự thật về quyền lực thao túng đằng sau những lý thuyết “khách quan” bị che giấu.",
+  "d": "Đây là diễn ngôn của các học giả, chuyên gia và bộ máy quan liêu. Tri thức (S₂) trở thành ông chủ mới. Sinh viên, bệnh nhân hay đối tượng nghiên cứu (a) bị biến thành những con số, hồ sơ. Sự thật bị che giấu là quyền lực chính trị (S₁ - ai là người quyết định cái gì được coi là “tri thức”). Sản phẩm là $ – một chủ thể bị tha hóa, bị nghiền nát bởi các tiêu chuẩn, luôn cảm thấy mình không đủ giỏi.",
+  "im": "S₂ → a: Không thể biến mọi khía cạnh của con người và thế giới thành một hệ thống tri thức hoàn chỉnh, có thể kiểm soát và đo lường tuyệt đối.",
+  "imp": "$ // S₁: Quyền lực ẩn giấu đằng sau tri thức không thể tạo ra một chủ thể tự do, mà chỉ tạo ra những chủ thể bị tha hóa bởi chính hệ thống đó.",
+  "ex": "Một hội đồng xét duyệt học bổng (S₂) nhìn vào bảng điểm, bài báo khoa học và đếm số lượng trích dẫn của cô nghiên cứu sinh. Họ không thấy một con người đang kiệt quệ, họ chỉ thấy một “chỉ số năng suất” (a). Sự thật là họ đang bảo vệ ngân sách và uy tín của trường (S₁). Sản phẩm là cô gái bị trầm cảm, cảm thấy giá trị bản thân gắn liền với những con số ($)."
+ },
+ "hysteric": {
+  "tag": "Tiếng nói phản kháng không ngừng chất vấn quyền lực để đòi câu trả lời, trong khi ham muốn vô đáy không bao giờ được thỏa mãn.",
+  "d": "Diễn ngôn của sự phản kháng. Chủ thể bị chia cắt ($) đứng lên chất vấn ông chủ (S₁): “Tại sao? Ông là ai mà có quyền?”. Sự thật thúc đẩy họ là a (ham muốn không được thỏa mãn, sự khao khát vô tận). Sản phẩm là S₂ – tri thức mới mà họ ép ông chủ phải tạo ra để trả lời cho những câu hỏi của họ.",
+  "im": "$ → S₁: Không thể ép ông chủ (S₁) đưa ra câu trả lời cuối cùng làm thỏa mãn hoàn toàn ham muốn vô đáy của chủ thể ($).",
+  "imp": "S₂ // a: Ham muốn không đáy không thể biến thành một khối tri thức trọn vẹn để chữa lành.",
+  "ex": "Người yêu liên tục hỏi: “Anh có thực sự yêu em không? Tại sao hôm qua anh lại nhìn cô gái kia?” ($). Cô ta liên tục chất vấn chàng trai (S₁). Cô ta không thực sự muốn biết câu trả lời; cô ta muốn thấy anh ta lúng túng, muốn thấy anh ta thừa nhận rằng anh ta cũng có những ham muốn khác (a). Sản phẩm của màn chất vấn này là những lời giải thích, lý do (S₂) anh ta đưa ra, nhưng chúng không bao giờ làm cô ta thỏa mãn."
+ },
+ "analyst": {
+  "tag": "Nhà phân tâm hóa thân thành vẻ ngoài của nguyên nhân ham muốn, lôi kéo bệnh nhân tự bộc lộ những tri thức vô thức đang bị che giấu trong chính họ.",
+  "d": "Nhà phân tâm chỉ chiếm vị trí vẻ ngoài cấu trúc của nguyên nhân ham muốn (a); họ không phải chính đối tượng a. Cái khác là $: người được phân tích được đặt vào vị trí chủ thể nói và liên tưởng. Sự thật là S₂—tri thức vô thức không được ý thức làm chủ; sản phẩm là S₁, những cái biểu đạt-chủ có thể xuất hiện/tách ra trong tiến trình phân tích. Đây không phải việc nhà phân tâm “đưa đáp án” cho bệnh nhân.",
+  "im": "a → $: Không thể phân tích để biến tri thức vô thức S₂ thành tri thức toàn vẹn, có thể làm chủ.",
+  "imp": "S₁ // S₂: Cái biểu đạt được sản xuất không thể trở thành tri thức toàn vẹn về sự thật vô thức.",
+  "ex": "Cô nghiên cứu sinh nói suốt nửa giờ về Bakhtin, mạch lạc đến mức ai cũng gật đầu. Nhà phân tâm không hỏi gì về Bakhtin; ông chỉ để ý lúc cô lỡ lời, một chữ nghe như chuyện cô từng từ chối một lời cầu hôn rồi bỏ nước ra đi. Ông bám vào chỗ lời cô tự vấp, chứ không tranh luận lý thuyết."
+ },
+ "capitalist": {
+  "tag": "Chủ thể tự nguyện quay cuồng trong vòng xoáy tiêu dùng bị điều khiển bởi hệ thống công nghệ, trong khi mệnh lệnh vô hình của đồng tiền và quyền lực bị che giấu.",
+  "d": "Trong diễn ngôn này, chủ thể bị chia cắt ($) bị đẩy lên vị trí tác nhân, nhưng thực chất lại bị điều khiển bởi một mệnh lệnh vô hình (S₁: Hãy tiêu dùng! Hãy làm việc!). Họ hướng đến hệ thống máy móc, công nghệ, mạng xã hội (S₂). Sản phẩm thặng dư là a (khoái cảm thặng dư, sự giải trí liên tục, những món đồ vô dụng). Đây là diễn ngôn phá vỡ mọi giới hạn, biến chính chủ thể thành kẻ nô lệ tự nguyện của chính mình.",
+  "im": "Không thể đạt đến sự thỏa mãn cuối cùng; vòng lặp tiêu dùng và sản xuất không có điểm dừng.",
+  "imp": "a // S₁: Mệnh lệnh của tư bản không thể mang lại khoái cảm thực sự, nó chỉ tạo ra những thặng dư ảo liên tục tuôn chảy.",
+  "ex": "Bạn nằm trên giường lúc 2 giờ sáng. Bạn mệt rã rời. Nhưng tay bạn vẫn vuốt màn hình điện thoại lướt TikTok ($). Bạn tương tác với thuật toán (S₂). Sự thật bị che giấu là mệnh lệnh của nền tảng công nghệ và chủ nghĩa tiêu dùng (S₁): “Hãy tiêu thụ nhiều hơn nữa”. Sản phẩm là một cảm giác hưng phấn ngắn ngủi, một chút dopamine (a). Bạn càng lướt, bạn càng cảm thấy trống rỗng, nhưng bạn không thể dừng lại."
+ }
+};
+for(const k in PANEL_MAIN){const c=PANEL_MAIN[k];D[k].tag=c.tag;D[k].d=c.d;D[k].ex=c.ex;IM[k]=c.im;IMP[k]=c.imp}
 setDisc('master',true);frame();
 </script>
 </body>
