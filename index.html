@@ -3,67 +3,145 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Bốn diễn ngôn của Lacan · bản hiệu đính v3</title>
+<title>Bốn diễn ngôn của Lacan</title>
 <style>
-:root{color-scheme:dark;--fg:#e8e6f0;--mute:#9a97ad;--card:rgba(16,18,36,.86);--line:rgba(255,255,255,.14);--acc:#f2b84b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html,body{height:100%;margin:0;color:var(--fg);font-family:"Segoe UI",Tahoma,Arial,sans-serif;overflow:hidden;background:radial-gradient(ellipse at 50% 40%,#1a1740 0%,#0a0b1c 55%,#05060e 100%)}
+:root{color-scheme:dark;--fg:#ebe9f4;--mute:#a29fb6;--card:rgba(14,16,34,.84);--line:rgba(255,255,255,.12);--acc:#f2b84b;--acc-rgb:242,184,75;--ease:cubic-bezier(.2,.8,.2,1);box-sizing:border-box}
+*{-webkit-tap-highlight-color:transparent}
+html,body{height:100%;margin:0;color:var(--fg);font-family:"Segoe UI",system-ui,-apple-system,Tahoma,Arial,sans-serif;overflow:hidden;background:radial-gradient(ellipse at 50% 40%,#1a1740 0%,#0a0b1c 55%,#05060e 100%)}
 canvas{display:block;position:fixed;inset:0;width:100%;height:100%;touch-action:none;cursor:grab}
+:focus-visible{outline:2px solid rgba(255,255,255,.75);outline-offset:2px;border-radius:6px}
 #ui{position:fixed;inset:0;pointer-events:none;display:flex;flex-direction:column;justify-content:space-between;padding:14px;padding-top:calc(14px + env(safe-area-inset-top,0px));padding-bottom:calc(14px + env(safe-area-inset-bottom,0px));box-sizing:border-box}
-h1{margin:0;font-size:20px;font-weight:normal;letter-spacing:.05em}
-.sub{color:var(--mute);font-size:12px;margin-top:2px}
-#panel{pointer-events:auto;margin-top:10px;width:min(430px,100%);max-height:66vh;overflow-y:auto;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;backdrop-filter:blur(10px);font-size:13.5px;line-height:1.45;box-sizing:border-box}
-#panel b{color:var(--acc);font-weight:normal;font-size:17px}
-.tag{display:block;color:var(--mute);font-size:12px;margin:1px 0 6px}
-p{margin:6px 0}
-table.m{margin:8px auto 4px;border-collapse:collapse;font-size:30px;font-style:italic}
-.m td{text-align:center;padding:2px 18px;cursor:pointer}
-.m tr+tr td{border-top:0}
-.m td.frac-denom{position:relative;padding-top:14px}
-.m .fbar{position:absolute;z-index:3;top:-5px;left:7px;right:7px;height:18px;border-radius:6px;background:transparent;cursor:pointer;display:block}
-.m .fbar::after{content:'';position:absolute;left:6px;right:6px;top:7px;height:4px;border-radius:5px;background:var(--acc);box-shadow:0 0 7px rgba(242,184,75,.65)}
-.m .fbar:hover::after,.m .fbar:focus::after{height:6px;top:6px;outline:2px solid rgba(255,255,255,.75);outline-offset:2px}
-.m small{display:block;font:9px "Segoe UI",Tahoma,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
-.m .ar{color:var(--mute);cursor:default;font-style:normal}
-.m .frac-hint{font-size:10.5px;margin:0 0 7px;text-align:center;color:var(--mute)}
-.row{display:flex;gap:8px;align-items:baseline;padding:3px 0;border-top:1px solid var(--line);cursor:pointer}
-.row:hover,.gen:hover{background:rgba(255,255,255,.05)}
-.chip{width:26px;text-align:center;font-style:italic;font-size:16px;flex:none}
-u{text-decoration:none;color:var(--mute);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-right:4px}
-.gen{display:flex;justify-content:space-between;padding:3px 4px;border-top:1px solid var(--line);cursor:pointer;font-size:13px}
-.gen.on{color:var(--acc)}
+h1{margin:0;font-size:19px;font-weight:500;letter-spacing:.06em}
+.sub{color:var(--mute);font-size:12px;margin:3px 0 0;max-width:640px;line-height:1.45}
+.sub kbd,#help kbd{font:inherit;font-size:11px;padding:1px 6px;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;background:rgba(255,255,255,.05);color:var(--fg)}
+#panel{pointer-events:auto;margin-top:10px;width:min(440px,100%);max-height:calc(100dvh - 190px);overflow-y:auto;overscroll-behavior:contain;overflow-x:hidden;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:0;backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);box-shadow:0 22px 60px -24px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.06);font-size:14px;line-height:1.55;box-sizing:border-box;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.22) transparent}
+#panel::-webkit-scrollbar{width:8px}#panel::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2);border-radius:8px;border:2px solid transparent;background-clip:padding-box}
+.phead{position:sticky;top:0;z-index:6;display:flex;align-items:center;gap:6px;padding:8px 10px 8px 14px;background:rgba(14,16,34,.93);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);font-size:12px;color:var(--mute);min-height:20px}
+.phead .cur{color:var(--fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.phead .sep{opacity:.5}
+.back{color:var(--acc);cursor:pointer;white-space:nowrap;padding:3px 8px;margin-left:-8px;border-radius:999px;transition:background .18s,transform .18s var(--ease)}
+.back:hover{background:rgba(var(--acc-rgb),.14);transform:translateX(-2px)}
+#panel .pmin{margin-left:auto;flex:none;width:26px;height:26px;padding:0;border-radius:50%;font-size:13px;line-height:1;color:var(--mute);background:transparent;border:1px solid var(--line);display:grid;place-items:center;transition:transform .25s var(--ease),color .15s,border-color .15s,background .15s}
+#panel .pmin:hover{color:var(--fg);border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.06)}
+#panel.min .pmin{transform:rotate(180deg)}
+#panel.min{max-height:none;overflow:visible}
+#panel.min .pc{display:none}
+#panel.min .phead{border-bottom:0;border-radius:16px}
+.pc{padding:12px 16px 16px;animation:pin .28s var(--ease)}
+@keyframes pin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+#panel b{color:var(--acc);font-weight:500;font-size:17px}
+.dtitle{display:block;font-size:19px!important;letter-spacing:.01em}
+.tag{display:block;color:var(--mute);font-size:12.5px;margin:2px 0 8px}
+p{margin:7px 0}
+.fwrap{position:relative;margin:14px -4px 14px;padding:14px 0 8px}
+.fwrap::before,.fwrap::after{content:'';position:absolute;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent)}
+.fwrap::before{top:0}.fwrap::after{bottom:0}
+.fhint{text-align:center;font-size:11px;color:var(--mute);margin-top:6px;opacity:.8}
+table.m{margin:4px auto;border-collapse:collapse;font-size:32px;font-style:italic}
+.m td{text-align:center;padding:2px 10px;vertical-align:middle}
+.m td.frac-denom{position:relative;padding-top:15px}
+.m td:not(.ar){min-width:96px}
+.m .fbar{position:absolute;z-index:3;top:-5px;left:7px;right:7px;height:20px;border-radius:8px;background:transparent;cursor:pointer;display:block}
+.m .fbar::after{content:'';position:absolute;left:6px;right:6px;top:8px;height:4px;border-radius:5px;background:var(--acc);box-shadow:0 0 8px rgba(var(--acc-rgb),.6);transition:height .18s var(--ease),top .18s var(--ease),box-shadow .18s,filter .18s}
+.m .fbar:hover::after,.m .fbar:focus-visible::after{height:6px;top:7px;box-shadow:0 0 0 3px rgba(var(--acc-rgb),.22),0 0 18px rgba(var(--acc-rgb),.9);filter:brightness(1.12)}
+.m .fbar:focus-visible{outline:none}
+.m .sym{display:inline-block;cursor:pointer;padding:1px 6px;position:relative;transition:transform .25s var(--ease),text-shadow .25s,filter .25s}
+.m .sym:hover,.m .sym:focus-visible{outline:none;transform:translateY(-3px) scale(1.12);text-shadow:0 0 6px rgba(var(--cr),.9),0 0 20px rgba(var(--cr),.75),0 0 38px rgba(var(--cr),.4);filter:brightness(1.18)}
+.m .sym:active{transform:translateY(-1px) scale(1.05)}
+.m .plab{display:inline-block;margin-top:5px;padding:1px 4px;font:500 10px/1.4 "Segoe UI",system-ui,Tahoma,Arial,sans-serif;font-style:normal;letter-spacing:.1em;white-space:normal;max-width:112px;text-wrap:balance;text-align:center;text-transform:uppercase;color:var(--mute);cursor:pointer;transition:color .22s,text-shadow .22s,opacity .22s}
+.m .plab:hover,.m .plab:focus-visible{outline:none;color:rgb(var(--cr));text-shadow:0 0 10px rgba(var(--cr),.75),0 0 22px rgba(var(--cr),.4)}
+.m .ar{color:var(--mute);font-style:normal;font-size:28px}
+.m td[data-arr]{cursor:pointer}
+.m .ag{display:inline-block;padding:2px 6px;transition:transform .25s var(--ease),color .2s,text-shadow .25s}
+.m td[data-arr]:hover .ag,.m td[data-arr]:focus-visible .ag{color:var(--acc);text-shadow:0 0 6px rgba(var(--acc-rgb),.9),0 0 20px rgba(var(--acc-rgb),.7);transform:translate(var(--dx,0),var(--dy,0)) scale(1.15)}
+.m td[data-arr]:focus-visible{outline:none}
+.m g[data-arr]{cursor:pointer;outline:none}
+.m g[data-arr] .hit{stroke:transparent;stroke-width:13;fill:none;pointer-events:stroke}
+.m g[data-arr] .vis,.m g[data-arr] polygon{transition:stroke .18s,fill .18s}
+.m g[data-arr]:hover .vis,.m g[data-arr]:focus-visible .vis{stroke:var(--acc);stroke-width:2.2}
+.m g[data-arr]:hover polygon,.m g[data-arr]:focus-visible polygon{fill:var(--acc)}
+.m g[data-arr]:hover,.m g[data-arr]:focus-visible{filter:drop-shadow(0 0 5px rgba(var(--acc-rgb),.85))}
+.chip[data-term]{cursor:pointer}
+.row{display:flex;gap:10px;align-items:baseline;padding:7px 8px;margin:2px -8px;border-radius:10px;cursor:pointer;position:relative;transition:background .18s,box-shadow .18s,transform .18s var(--ease)}
+.row:hover{background:rgba(var(--cr,255,255,255),.08);box-shadow:inset 2px 0 0 rgba(var(--cr,255,255,255),.85);transform:translateX(2px)}
+.row::after{content:"›";position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--mute);opacity:0;transition:opacity .18s,transform .18s}
+.row:hover::after{opacity:1;transform:translate(2px,-50%)}
+.chip{width:28px;text-align:center;font-style:italic;font-size:17px;flex:none;transition:transform .2s var(--ease),text-shadow .2s}
+.chip[data-term]:hover{transform:scale(1.25);text-shadow:0 0 12px currentColor}
+u{text-decoration:none;color:var(--mute);font-size:11px;letter-spacing:.09em;text-transform:uppercase;margin-right:5px;font-weight:500}
+.gen{display:flex;justify-content:space-between;gap:10px;padding:7px 8px;margin:1px -8px;border-radius:9px;cursor:pointer;font-size:13.5px;transition:background .18s,transform .18s var(--ease),color .18s}
+.gen>span:last-child{color:var(--mute);white-space:nowrap}
+.gen:hover{background:rgba(255,255,255,.07);transform:translateX(2px)}
+.gen:hover>span:last-child{color:var(--fg)}
+.gen.on{color:var(--acc);background:rgba(var(--acc-rgb),.09)}
 .m tr+tr td.nb{border-top:0}
-.ex{border-left:2px solid var(--acc);padding-left:8px;color:#d8d4e8}
-.note{color:var(--mute);font-size:12px;margin-top:6px}
-.back{color:var(--acc);cursor:pointer;margin-top:8px;display:inline-block}
+.ex{border-left:2px solid var(--acc);background:linear-gradient(90deg,rgba(var(--acc-rgb),.08),transparent 85%);border-radius:0 10px 10px 0;padding:7px 11px;margin:9px 0;color:#dcd8ec}
+.ex>b{font-size:10.5px!important;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-right:6px;font-weight:600}
+.note{color:var(--mute);font-size:12.5px;margin-top:8px}
 .bs{position:relative;display:inline-block}
 .bs::after{content:'';position:absolute;left:48%;top:-9%;width:2px;height:118%;background:currentColor;transform:rotate(24deg);transform-origin:center}
-#bar{pointer-events:auto;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:8px}
-button{font:inherit;font-size:14px;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 13px;cursor:pointer;backdrop-filter:blur(8px)}
+#bar{pointer-events:auto;display:flex;gap:4px;align-items:center;justify-content:center;flex-wrap:wrap;margin:8px auto 0;padding:5px;max-width:100%;background:var(--card);border:1px solid var(--line);border-radius:22px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 16px 40px -20px rgba(0,0,0,.8)}
+button{font:inherit;font-size:13.5px;color:var(--fg);background:transparent;border:1px solid transparent;border-radius:999px;padding:7px 13px;cursor:pointer;transition:background .18s,color .18s,border-color .18s,transform .18s var(--ease)}
+button:hover{background:rgba(255,255,255,.08)}
+button:active{transform:scale(.97)}
+button.on{background:rgba(var(--acc-rgb),.16);border-color:rgba(var(--acc-rgb),.5);color:var(--acc)}
+#bar button:nth-child(6){position:relative;margin-left:10px}
+#bar button:nth-child(6)::before{content:'';position:absolute;left:-7px;top:22%;height:56%;width:1px;background:var(--line)}
+#bar button.act{color:var(--mute)}#bar button.act:hover{color:var(--fg)}
+#bar button.pl{color:var(--acc)}
 details{margin:0 0 4px 34px}summary{cursor:pointer;color:var(--acc);font-size:12px;padding:2px 0}
-.intro,.sources{border:1px solid rgba(255,255,255,.13);border-radius:9px;padding:9px 10px;margin:4px 0 10px;background:rgba(255,255,255,.035)}
+details.sec{margin:8px 0;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.025);overflow:hidden}
+details.sec>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;padding:9px 12px;font-size:13px;color:var(--fg);transition:background .18s}
+details.sec>summary::-webkit-details-marker{display:none}
+details.sec>summary::after{content:"▾";color:var(--mute);transition:transform .25s var(--ease)}
+details.sec:not([open])>summary::after{transform:rotate(-90deg)}
+details.sec>summary:hover{background:rgba(255,255,255,.06)}
+details.sec[open]>summary{border-bottom:1px solid var(--line)}
+details.sec>.sb{padding:4px 12px 10px}
+.intro,.sources{border:1px solid rgba(255,255,255,.13);border-radius:10px;padding:9px 11px;margin:4px 0 10px;background:rgba(255,255,255,.035)}
 .intro b,.sources>b{color:#f2b84b;font-size:13px}
 .intro p,.sources p{margin:5px 0}
-.sources{font-size:12.5px;line-height:1.45}
+.sources{font-size:12.5px;line-height:1.5}
 .sources ul{padding-left:18px;margin:6px 0}
 .sources li{margin:4px 0}
-.sources a{color:#9bcaff;text-decoration:underline}
+.sources a{color:#9bcaff;text-decoration:underline;text-underline-offset:2px}
 .section-cap{border-top:1px solid var(--line);margin-top:10px;padding-top:8px}
 .section-cap p{margin:7px 0}
-
-button.on{border-color:var(--acc);color:var(--acc)}
-button:hover{border-color:var(--fg)}
+#tip{position:fixed;z-index:20;pointer-events:none;padding:5px 10px;border-radius:9px;background:rgba(10,11,26,.92);border:1px solid var(--line);font-size:12px;line-height:1.35;box-shadow:0 10px 26px -10px rgba(0,0,0,.9);opacity:0;transform:translateY(4px);transition:opacity .15s,transform .15s;white-space:nowrap}
+#tip.on{opacity:1;transform:none}#tip small{display:block;color:var(--mute);font-size:10.5px}
+#help{position:fixed;z-index:30;right:14px;bottom:calc(70px + env(safe-area-inset-bottom,0px));width:min(340px,calc(100vw - 28px));padding:14px 16px;border-radius:16px;background:rgba(14,16,34,.96);border:1px solid var(--line);box-shadow:0 24px 60px -20px rgba(0,0,0,.9);font-size:13px;line-height:1.55;pointer-events:auto;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .2s,transform .2s var(--ease),visibility .2s}
+#help.on{opacity:1;visibility:visible;transform:none}
+#help b{color:var(--acc);font-weight:500;font-size:14px}
+#help ul{margin:6px 0 10px;padding-left:0;list-style:none}#help li{margin:5px 0;display:flex;gap:8px;align-items:baseline}
+#help .dot{display:inline-block;width:9px;height:9px;border-radius:50%;flex:none;transform:translateY(0)}
+@media (max-width:640px){
+ #ui{padding:10px;padding-top:calc(10px + env(safe-area-inset-top,0px))}
+ h1{font-size:17px}.sub{font-size:11.5px}
+ #panel{width:100%;max-height:calc(100dvh - 215px);font-size:13.5px}
+ table.m{font-size:27px}.m td{padding:2px 6px}.m td:not(.ar){min-width:80px}.m .ar{font-size:24px}.m .plab{letter-spacing:.06em;font-size:9.5px;max-width:96px}
+ #bar{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;border-radius:18px}
+ #bar::-webkit-scrollbar{display:none}
+ button{font-size:13px;padding:7px 11px;white-space:nowrap;flex:none}
+ #help{right:10px;left:10px;width:auto}
+}
+@media (max-height:520px){#panel{max-height:calc(100dvh - 120px)}.sub{display:none}}
+@media (hover:none){.m .sym:hover{transform:none}.row:hover,.gen:hover{transform:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <div id="ui">
   <div>
     <h1>Bốn diễn ngôn của Lacan</h1>
-    <div class="sub">Bản hiệu đính · kéo để xoay · cuộn để phóng to · nhấn hai gạch vàng trong mô hình 3D hoặc công thức trong panel để xem giải thích</div>
+    <div class="sub">Kéo để xoay · cuộn để phóng to · bấm vào ký hiệu, mũi tên, vị trí hoặc gạch vàng (ở mô hình 3D lẫn công thức) để xem giải thích · <kbd>?</kbd> trợ giúp</div>
     <div id="panel"></div>
   </div>
-  <div id="bar"></div>
+  <div id="bar" role="toolbar" aria-label="Chọn diễn ngôn"></div>
 </div>
+<div id="tip" role="status"></div>
+<div id="help" role="dialog" aria-label="Trợ giúp"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>if(!window.THREE){document.getElementById("panel").innerHTML='<div class="pc"><b>Không tải được mô hình 3D</b><p>Trang cần tải thư viện three.js từ mạng. Hãy kiểm tra kết nối rồi tải lại trang.</p></div>'}</script>
 <script>
 const TK=['S1','S2','$','a'],POSL=['agent','other','truth','product'],FLD={agent:'a',other:'o',truth:'t',product:'p'};
 const TE={
@@ -559,6 +637,10 @@ const ORDER=['master','hysteric','analyst','university'];
 const ALL=ORDER.concat('capitalist');
 const T=k=>k==='$'?'<span class="bs">S</span>':k==='S1'?'S<sub>1</sub>':k==='S2'?'S<sub>2</sub>':'a';
 const hex=c=>'#'+c.toString(16).padStart(6,'0');
+const RGB=c=>(c>>16&255)+','+(c>>8&255)+','+(c&255);
+const OPEN=new Set(['pos','cap']);
+const SEC=(id,title,body)=>'<details class="sec" data-sec="'+id+'"'+(OPEN.has(id)?' open':'')+'><summary>'+title+'</summary><div class="sb">'+body+'</div></details>';
+let lastSig='';
 let cur='master',view={type:'disc'},hold={},hotPos=null,hov=null,hotArr=null;
 
 // ---------- scene ----------
@@ -717,57 +799,85 @@ const CAP=`<div class="section-cap">
  <p><b>Lưu ý:</b> món hàng cụ thể không đồng nhất với đối tượng a. Đây là một cách đọc cấu trúc tiêu dùng theo Lacan và các nhà bình giải; không nên đồng nhất mọi hành vi mua sắm với diễn ngôn tư bản.</p>
  </div>`
 function mat(d){
- const cell=(p,k,l)=>'<td data-pos="'+p+'" style="color:'+hex(TE[k].c)+'">'+T(k)+'<small>'+l+'</small></td>';
- const denominator=(p,k,l,frac)=>'<td data-pos="'+p+'" class="frac-denom" style="color:'+hex(TE[k].c)+'"><span class="fbar" data-arr="'+frac+'" role="button" tabindex="0" title="Bấm để xem gạch phân số '+(frac==='fracLeft'?'trái':'phải')+'" aria-label="Xem gạch phân số '+(frac==='fracLeft'?'trái: tác nhân trên sự thật':'phải: cái khác trên sản phẩm')+'"></span>'+T(k)+'<small>'+l+'</small></td>';
- const crossSvg='<svg width="46" height="40" viewBox="0 0 46 40" stroke="#cfd2ff" fill="#cfd2ff" stroke-width="1.6"><line x1="4" y1="38" x2="39" y2="8"/><line x1="42" y1="38" x2="7" y2="8"/><polygon points="43,4 32,6 40,15" stroke="none"/><polygon points="3,4 14,6 6,15" stroke="none"/></svg>';
+ const EK=k=>k==='$'?'SUBJ':k,DK=k=>k==='SUBJ'?'$':k;
+ const SYM=k=>'<span class="sym" data-term="'+EK(k)+'" role="button" tabindex="0" title="Bấm để xem giải thích ký hiệu" aria-label="Xem giải thích ký hiệu '+(k==='$'?'chủ thể bị chia cắt':k==='a'?'đối tượng a':k==='S1'?'S₁':'S₂')+'">'+T(k)+'</span>';
+ const AA=(k,ch,rs)=>'<td'+(rs?' rowspan="2"':'')+' class="ar" data-arr="'+k+'" style="--dx:'+(ch==='→'?'4px':'0')+';--dy:'+(ch==='↑'?'-4px':ch==='↓'?'4px':'0')+'" role="button" tabindex="0" title="Bấm để xem giải thích: '+AR[k].n+'" aria-label="Xem giải thích: '+AR[k].n+'"><span class="ag">'+ch+'</span></td>';
+ const PLAB=(p,l)=>'<span class="plab" data-pos="'+p+'" role="button" tabindex="0" title="Bấm để xem vị trí '+PO[p].n+'" aria-label="Xem giải thích vị trí '+PO[p].n+'">'+l+'</span>';
+ const cell=(p,k,l)=>'<td style="color:'+hex(TE[k].c)+';--cr:'+RGB(TE[k].c)+'">'+SYM(k)+'<br>'+PLAB(p,l)+'</td>';
+ const denominator=(p,k,l,frac)=>'<td class="frac-denom" style="color:'+hex(TE[k].c)+';--cr:'+RGB(TE[k].c)+'"><span class="fbar" data-arr="'+frac+'" role="button" tabindex="0" title="Bấm để xem gạch phân số '+(frac==='fracLeft'?'trái':'phải')+'" aria-label="Xem gạch phân số '+(frac==='fracLeft'?'trái: tác nhân trên sự thật':'phải: cái khác trên sản phẩm')+'"></span>'+SYM(k)+'<br>'+PLAB(p,l)+'</td>';
+ const gx=(k,x1,y1,x2,y2,pg)=>'<g data-arr="'+k+'" role="button" tabindex="0" aria-label="Xem giải thích: '+AR[k].n+'"><title>Bấm để xem giải thích: '+AR[k].n+'</title><line class="vis" x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'"/><polygon points="'+pg+'" stroke="none"/><path class="hit" d="M'+x1+' '+y1+'L'+(x1+(x2-x1)*.4).toFixed(1)+' '+(y1+(y2-y1)*.4).toFixed(1)+'M'+(x1+(x2-x1)*.6).toFixed(1)+' '+(y1+(y2-y1)*.6).toFixed(1)+'L'+x2+' '+y2+'"/></g>';
+ const crossSvg='<svg width="46" height="40" viewBox="0 0 46 40" stroke="#cfd2ff" fill="#cfd2ff" stroke-width="1.6">'+gx('crossT',4,38,39,8,'43,4 32,6 40,15')+gx('crossP',42,38,7,8,'3,4 14,6 6,15')+'</svg>';
  const center='<td rowspan="2" class="ar">'+crossSvg+'</td>';
  let table;
- if(d===D.capitalist)table='<table class="m"><tr><td rowspan="2" class="ar">↓</td>'+cell('agent',d.a,'tác nhân')+center+cell('other',d.o,'Cái khác')+'<td rowspan="2" class="ar">↓</td></tr><tr>'+denominator('truth',d.t,'sự thật','fracLeft')+denominator('product',d.p,'sản phẩm / mất mát','fracRight')+'</tr></table>';
- else table='<table class="m"><tr><td rowspan="2" class="ar">↑</td>'+cell('agent',d.a,'tác nhân')+'<td class="ar">→</td>'+cell('other',d.o,'Cái khác')+'<td rowspan="2" class="ar">↓</td></tr><tr>'+denominator('truth',d.t,'sự thật','fracLeft')+'<td class="ar nb">'+crossSvg+'</td>'+denominator('product',d.p,'sản phẩm / mất mát','fracRight')+'</tr></table>';
+ if(d===D.capitalist)table='<table class="m"><tr>'+AA('left','↓',1)+cell('agent',d.a,'tác nhân')+center+cell('other',d.o,'Cái khác')+AA('right','↓',1)+'</tr><tr>'+denominator('truth',d.t,'sự thật','fracLeft')+denominator('product',d.p,'sản phẩm / mất mát','fracRight')+'</tr></table>';
+ else table='<table class="m"><tr>'+AA('left','↑',1)+cell('agent',d.a,'tác nhân')+AA('top','→',0)+cell('other',d.o,'Cái khác')+AA('right','↓',1)+'</tr><tr>'+denominator('truth',d.t,'sự thật','fracLeft')+'<td class="ar nb">'+crossSvg+'</td>'+denominator('product',d.p,'sản phẩm / mất mát','fracRight')+'</tr></table>';
  return table;
 }
 function diag(d){return d===D.capitalist?CAP:''}
 const cf=d=>T(d.a)+'/'+T(d.t)+' → '+T(d.o)+'/'+T(d.p);
+function HEAD(){
+  const d=D[cur];let c;
+  if(view.type==='disc')c='<span class="cur">Diễn ngôn '+d.n+'</span>';
+  else{
+    const lab=view.type==='term'?T(view.key)+' · '+TE[view.key].n:view.type==='arr'?AR[view.key].n.split(':')[0]:view.type==='pos'?'Vị trí '+PO[view.key].n:'Khái niệm nền tảng';
+    c='<span class="back" role="button" tabindex="0" title="Quay lại diễn ngôn (Esc)">← '+d.n+'</span><span class="sep">›</span><span class="cur">'+lab+'</span>';
+  }
+  return '<div class="phead">'+c+'<button class="pmin" id="pmin" aria-label="Thu gọn hoặc mở rộng bảng" title="Thu gọn / mở rộng (M)">▾</button></div>';
+}
 function render(){
   const d=D[cur];let h='';
   if(view.type==='disc'){
-    h='<b>'+d.g+' · Diễn ngôn '+d.n+'</b><i class="tag">'+d.tag+'</i>'+mat(d)+'<p>'+d.d+'</p>'+(IM[cur]?'<p class="note" style="margin-top:0"><b>Bất khả:</b> '+IM[cur]+'<br><b>Bất lực:</b> '+IMP[cur]+'</p>':'')+'<p class="ex"><b style="font-size:13px">Ví dụ minh họa.</b> '+d.ex+'</p>';
-    POSL.forEach((pos,i)=>{h+='<div class="row" data-pos="'+pos+'"><span class="chip" style="color:'+hex(TE[d[FLD[pos]]].c)+'">'+T(d[FLD[pos]])+'</span><span><u>'+PO[pos].n+'</u>'+CAPF(d.r[i])+'</span></div>'+DXH(cur,pos)});
-    h+=diag(d)+ARL();h+='<p class="note" style="margin-top:10px"><b>Bốn công thức chuẩn · quy ước quay theo chiều kim đồng hồ</b><br>Chủ nhân → Cuồng loạn → Nhà phân tâm → Học thuật → Chủ nhân. Đây là phép hoán vị cấu trúc, không phải tiến trình lịch sử hay các giai đoạn phát triển.</p>';
-    ORDER.forEach(k=>{h+='<div class="gen'+(k===cur?' on':'')+'" data-disc="'+k+'"><span>'+D[k].g+' '+D[k].n+'</span><span style="font-style:italic">'+cf(D[k])+'</span></div>'});
-    h+='<p class="note"><b>Biến thể ngoài vòng quay:</b></p><div class="gen'+(cur==='capitalist'?' on':'')+'" data-disc="capitalist"><span>Biến thể · '+D.capitalist.n+'</span><span style="font-style:italic">'+cf(D.capitalist)+'</span></div>';
-    h+='<p class="note">Theo dõi S₁ khi quay theo chiều kim đồng hồ: tác nhân (Chủ nhân) → cái khác (Cuồng loạn) → sản phẩm (Nhà phân tâm) → sự thật (Học thuật). Chiều quay ngược cũng cho các hoán vị còn lại; điều quan trọng là luôn nói rõ quy ước.</p>';
-    h+=`<div class="intro"><b>Trước khi đọc</b><p>Đây không phải bốn kiểu tính cách hay bốn chẩn đoán, mà là bốn cách con người nói chuyện và ràng buộc nhau: trong lớp học, công sở, phòng khám, cuộc cãi vã. Vị trí thì đứng yên, còn bốn ký hiệu S₁, S₂, $, a lần lượt đổi chỗ. Một người hay một tổ chức có thể trượt từ diễn ngôn này sang diễn ngôn khác tùy lúc.</p><p><b>Cách đọc:</b> hàng trên là lời gọi đi từ tác nhân tới cái khác (chỗ của bất khả). Hàng dưới là sản phẩm // sự thật (chỗ của bất lực): ở đó không có mũi tên, chỉ có dấu //.</p></div>`;
+    let rows='';
+    POSL.forEach((pos,i)=>{rows+='<div class="row" data-pos="'+pos+'" style="--cr:'+RGB(TE[d[FLD[pos]]].c)+'"><span class="chip" data-term="'+(d[FLD[pos]]==='$'?'SUBJ':d[FLD[pos]])+'" title="Bấm để xem giải thích ký hiệu" style="color:'+hex(TE[d[FLD[pos]]].c)+'">'+T(d[FLD[pos]])+'</span><span><u>'+PO[pos].n+'</u>'+CAPF(d.r[i])+'</span></div>'+DXH(cur,pos)});
+    h='<b class="dtitle">'+d.g+' · Diễn ngôn '+d.n+'</b><i class="tag">'+d.tag+'</i><div class="fwrap">'+mat(d)+'<div class="fhint">Bấm ký hiệu, mũi tên, gạch vàng hoặc nhãn vị trí để xem giải thích</div></div><p>'+d.d+'</p>'+(IM[cur]?'<p class="note" style="margin-top:0"><b>Bất khả:</b> '+IM[cur]+'<br><b>Bất lực:</b> '+IMP[cur]+'</p>':'')+'<p class="ex"><b style="font-size:13px">Ví dụ minh họa.</b> '+d.ex+'</p>';
+    h+=SEC('pos','Bốn vị trí',rows);
+    if(cur==='capitalist')h+=SEC('cap','Biến thể tư bản · Milan 1972',diag(d));
+    h+=SEC('arr','Mũi tên và gạch phân số',ARL());
+    let rot='<p class="note" style="margin-top:2px"><b>Bốn công thức chuẩn · quy ước quay theo chiều kim đồng hồ</b><br>Chủ nhân → Cuồng loạn → Nhà phân tâm → Học thuật → Chủ nhân. Đây là phép hoán vị cấu trúc, không phải tiến trình lịch sử hay các giai đoạn phát triển.</p>';
+    ORDER.forEach(k=>{rot+='<div class="gen'+(k===cur?' on':'')+'" data-disc="'+k+'"><span>'+D[k].g+' '+D[k].n+'</span><span style="font-style:italic">'+cf(D[k])+'</span></div>'});
+    rot+='<p class="note"><b>Biến thể ngoài vòng quay:</b></p><div class="gen'+(cur==='capitalist'?' on':'')+'" data-disc="capitalist"><span>Biến thể · '+D.capitalist.n+'</span><span style="font-style:italic">'+cf(D.capitalist)+'</span></div>';
+    rot+='<p class="note">Theo dõi S₁ khi quay theo chiều kim đồng hồ: tác nhân (Chủ nhân) → cái khác (Cuồng loạn) → sản phẩm (Nhà phân tâm) → sự thật (Học thuật). Chiều quay ngược cũng cho các hoán vị còn lại; điều quan trọng là luôn nói rõ quy ước.</p>';
+    h+=SEC('rot','Bốn công thức và chiều quay',rot);
+    h+=SEC('how','Trước khi đọc','<p>Đây không phải bốn kiểu tính cách hay bốn chẩn đoán, mà là bốn cách con người nói chuyện và ràng buộc nhau: trong lớp học, công sở, phòng khám, cuộc cãi vã. Vị trí thì đứng yên, còn bốn ký hiệu S₁, S₂, $, a lần lượt đổi chỗ. Một người hay một tổ chức có thể trượt từ diễn ngôn này sang diễn ngôn khác tùy lúc.</p><p><b>Cách đọc:</b> hàng trên là lời gọi đi từ tác nhân tới cái khác (chỗ của bất khả). Hàng dưới là sản phẩm // sự thật (chỗ của bất lực): ở đó không có mũi tên, chỉ có dấu //.</p>');
   }else if(view.type==='term'){
     const k=view.key,t=TE[k],pos=POSL.find(p=>hold[p]===k),i=POSL.indexOf(pos);
     h='<b style="color:'+hex(t.c)+'">'+T(k)+' · '+t.n+'</b><p>'+t.txt+'</p><p class="ex"><b style="font-size:13px">Ví dụ.</b> '+t.ex+'</p>'+X(t.x)+'<p>Ở đây nó giữ vị trí <i>'+PO[pos].n+'</i>: '+d.r[i].replace(/[.\s]+$/,'')+'.</p><p>'+DX[cur][pos][0]+'</p><p class="ex"><b style="font-size:13px">Ví dụ.</b> '+DX[cur][pos][1]+'</p><p class="note" style="margin-top:8px">Nó đi qua các vị trí:</p>';
     ALL.forEach(dk=>{h+='<div class="gen'+(dk===cur?' on':'')+'" data-disc="'+dk+'"><span>'+D[dk].n+'</span><span>'+PO[where(dk,k)].n+'</span></div>'});
-    h+='<span class="back">← quay lại diễn ngôn</span>';
+    
   }else if(view.type==='arr'){
     const a=AR[view.key];
     const detail=(view.key==='fracLeft'||view.key==='fracRight')?FRACTION_PANEL(view.key):ARB(view.key);
-    h='<b>'+a.n+'</b><i class="tag">'+a.s+'</i><p class="note" style="margin-top:0">Trong diễn ngôn '+d.n+': '+a.f(d)+'</p>'+detail+ARL()+'<span class="back">← quay lại diễn ngôn</span>';
+    h='<b>'+a.n+'</b><i class="tag">'+a.s+'</i><p class="note" style="margin-top:0">Trong diễn ngôn '+d.n+': '+a.f(d)+'</p>'+detail+ARL()+'';
   }else if(view.type==='cons'){
-    h='<b>Khái niệm nền tảng</b><i class="tag">Những ý đứng sau sơ đồ</i>'+CON.map(c=>'<p><b style="font-size:14px">'+c[0]+'</b><br>'+c[1]+'</p>').join('')+BOOKMAP+SOURCEMAP+'<span class="back">← quay lại diễn ngôn</span>';
+    h='<b>Khái niệm nền tảng</b><i class="tag">Những ý đứng sau sơ đồ</i>'+CON.map(c=>'<p><b style="font-size:14px">'+c[0]+'</b><br>'+c[1]+'</p>').join('')+BOOKMAP+SOURCEMAP+'';
   }else{
     const pos=view.key;
     h='<b>'+PO[pos].n+'</b><p>'+PO[pos].txt+'</p><p class="ex"><b style="font-size:13px">Ví dụ.</b> '+PO[pos].ex+'</p>'+X(PO[pos].x)+'<p class="note">Ai chiếm vị trí này:</p>';
     ALL.forEach(dk=>{const tk=D[dk][FLD[pos]];h+='<div class="gen'+(dk===cur?' on':'')+'" data-disc="'+dk+'"><span>'+D[dk].n+'</span><span style="color:'+hex(TE[tk].c)+';font-style:italic">'+T(tk)+'</span></div>'});
-    h+='<span class="back">← quay lại diễn ngôn</span>';
+    
   }
+  const sig=view.type+':'+(view.key||'')+':'+cur;
+  h=HEAD()+'<div class="pc">'+h+'</div>';
   P.innerHTML=h.replace(/\$/g,'<span class="bs">S</span>').replace(/(^|[\s(>])'([^'<>\n]{2,}?)'(?=[\s.,;:!?)<]|$)/g,'$1“$2”');
+  if(sig!==lastSig){P.scrollTop=0;lastSig=sig}
 }
-P.addEventListener('mouseover',e=>{const x=e.target.closest('[data-pos]');hotPos=x?x.dataset.pos:null});
-P.addEventListener('mouseleave',()=>hotPos=null);
+P.addEventListener('mouseover',e=>{const x=e.target.closest('[data-pos]'),a=e.target.closest('[data-arr]'),t=e.target.closest('[data-term]');hotPos=x?x.dataset.pos:null;hotArr=a?a.dataset.arr:null;hov=t?(t.dataset.term==='SUBJ'?'$':t.dataset.term):null});
+P.addEventListener('mouseleave',()=>{hotPos=null;hotArr=null;hov=null});
 P.addEventListener('click',e=>{
+  if(e.target.closest('#pmin')){P.classList.toggle('min');return}
   const dk=e.target.closest('[data-disc]');if(dk){setDisc(dk.dataset.disc);return}
+  const tm=e.target.closest('[data-term]');if(tm){view={type:'term',key:tm.dataset.term==='SUBJ'?'$':tm.dataset.term};render();return}
   const ar=e.target.closest('[data-arr]');if(ar){view={type:'arr',key:ar.dataset.arr};render();return}
   if(e.target.closest('.back')){view={type:'disc'};render();return}
   const ps=e.target.closest('[data-pos]');if(ps){view={type:'pos',key:ps.dataset.pos};render()}
 });
 P.addEventListener('keydown',e=>{
-  const ar=e.target.closest('[data-arr]');
-  if(ar&&(e.key==='Enter'||e.key===' ')){e.preventDefault();view={type:'arr',key:ar.dataset.arr};render()}
+  if(e.key!=='Enter'&&e.key!==' ')return;
+  if(e.target.closest('.back')){e.preventDefault();view={type:'disc'};render();return}
+  const tm=e.target.closest('[data-term]'),ar=e.target.closest('[data-arr]'),ps=e.target.closest('.plab');
+  if(ps){e.preventDefault();view={type:'pos',key:ps.dataset.pos};render()}
+  else if(tm){e.preventDefault();view={type:'term',key:tm.dataset.term==='SUBJ'?'$':tm.dataset.term};render()}
+  else if(ar){e.preventDefault();view={type:'arr',key:ar.dataset.arr};render()}
 });
 // buttons
 const bar=document.getElementById('bar');
@@ -1254,6 +1364,41 @@ D.university.tag="Tri thức nói nhân danh sự khách quan, mọi thứ bị 
 IM.university="S₂ → a: Không thể quy đối tượng (con người, tự nhiên, nền kinh tế) thành dữ liệu hoàn chỉnh; sự khách quan hóa luôn để lại một phần dư không đo lường được.";IMP.university="$ // S₁: Chủ thể do hệ thống sinh ra, dù là người bị đo hay người vận hành hệ thống, không chạm tới được mệnh lệnh S₁ đang điều khiển nó.";
 ARD.university.top[0]="S₂ → a: tri thức hướng vào đối tượng (con người, hệ sinh thái, nền kinh tế…) để biết, đo và phân loại. Bất khả ở đây là giáo dục: không bao giờ nắm hết đối tượng, luôn còn phần không vào được chương trình hay bảng số liệu.";ARD.university.right[0]="a → $: đối tượng bị quy thành dữ liệu sinh ra chủ thể bị chia cắt. Người bị đo thấy mình không khớp thước đo; người vận hành hệ thống cũng kẹt giữa mệnh lệnh ẩn và thực tại không đo hết.";
 FRACTION_INFO.university.fracRight.text="Gạch ngăn cách đối tượng bị đo lường (a: con người, hệ sinh thái, nền kinh tế…) với chủ thể bị chia cắt ($) do hệ thống sinh ra, dù là người bị đo hay người vận hành. Sinh viên bị biến thành điểm số (a), và chính sự tha hóa đó khiến họ luôn cảm thấy mình không đủ ($).";
+})();
+
+
+// ===== UX: tooltip 3D, trợ giúp, phím tắt, ghi nhớ mục đã mở =====
+(function(){
+ P.addEventListener('toggle',e=>{const d=e.target;if(d.dataset&&d.dataset.sec){d.open?OPEN.add(d.dataset.sec):OPEN.delete(d.dataset.sec)}},true);
+ const tip=document.getElementById('tip');
+ const lab=h=>{const u=h.userData||{};if(TE[u.key])return[T(u.key)+' · '+TE[u.key].n,'Bấm để xem ký hiệu'];if(AR[u.arr])return[AR[u.arr].n.split(':')[0],'Bấm để xem giải thích'];if(PO[u.pos])return['Vị trí '+PO[u.pos].n,'Bấm để xem vị trí']};
+ cv.addEventListener('pointermove',e=>{
+   if(drag){tip.classList.remove('on');return}
+   const h=hit(e),L=h&&lab(h);
+   if(!L){tip.classList.remove('on');return}
+   tip.innerHTML=(L[0]+'<small>'+L[1]+'</small>').replace(/\$/g,'<span class="bs">S</span>');
+   const w=tip.offsetWidth;tip.style.left=Math.min(e.clientX+14,innerWidth-w-8)+'px';tip.style.top=(e.clientY+16)+'px';tip.classList.add('on');
+ });
+ cv.addEventListener('pointerleave',()=>tip.classList.remove('on'));
+ cv.addEventListener('pointerdown',()=>tip.classList.remove('on'));
+ const help=document.getElementById('help');
+ const dot=k=>'<span class="dot" style="background:'+hex(TE[k].c)+'"></span>';
+ help.innerHTML='<b>Cách dùng</b><ul><li>🖱️<span><b>Kéo</b> để xoay, <b>cuộn</b> để phóng to, <b>bấm</b> vào bất kỳ thành phần nào để xem giải thích.</span></li><li>⌨️<span><kbd>←</kbd> <kbd>→</kbd> đổi diễn ngôn · <kbd>Esc</kbd> quay lại · <kbd>M</kbd> thu gọn bảng · <kbd>?</kbd> mở/đóng trợ giúp</span></li></ul><b>Chú giải</b><ul>'
+  +TK.map(k=>'<li>'+dot(k)+'<span><b style="font-size:13px;color:'+hex(TE[k].c)+'">'+T(k)+'</b> · '+TE[k].n+'</span></li>').join('')
+  +'<li><span class="dot" style="background:var(--acc);border-radius:2px;height:4px;width:12px;transform:translateY(-3px)"></span><span>Thanh vàng: gạch phân số (rào cản giữa hàng trên và hàng dưới)</span></li></ul><span class="note" style="margin:0">Bốn vị trí: tác nhân (trên-trái), cái khác (trên-phải), sự thật (dưới-trái), sản phẩm (dưới-phải).</span>';
+ help.innerHTML=help.innerHTML.replace(/\$/g,'<span class="bs">S</span>');
+ const tog=()=>{help.classList.toggle('on');hb.classList.toggle('on',help.classList.contains('on'))};
+ btn('?',tog);const hb=bar.lastChild;hb.setAttribute('aria-label','Trợ giúp');hb.title='Trợ giúp (?)';
+ [...bar.children].forEach((b,i)=>{if(i>=5)b.classList.add('act')});
+ bar.querySelectorAll('button')[7].classList.remove('act');bar.querySelectorAll('button')[7].classList.add('pl');
+ document.addEventListener('click',e=>{if(help.classList.contains('on')&&!e.target.closest('#help')&&e.target!==hb){help.classList.remove('on');hb.classList.remove('on')}});
+ addEventListener('keydown',e=>{
+   if(e.target.matches('input,textarea')||e.ctrlKey||e.metaKey||e.altKey)return;
+   if(e.key==='Escape'){if(help.classList.contains('on')){tog()}else if(view.type!=='disc'){view={type:'disc'};render()}}
+   else if(e.key==='?'){tog()}
+   else if(e.key==='m'||e.key==='M'){P.classList.toggle('min')}
+   else if(e.key==='ArrowRight'||e.key==='ArrowLeft'){const i=ALL.indexOf(cur),n=ALL.length;setDisc(ALL[(i+(e.key==='ArrowRight'?1:n-1))%n])}
+ });
 })();
 
 setDisc('master',true);frame();
