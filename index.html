@@ -359,7 +359,7 @@ bottom:['Mũi tên này không được vẽ. Phần dư a không dừng ở b�
 left:['$ → S₁: chủ thể bất mãn tìm thẳng tới thương hiệu, sản phẩm như câu trả lời có sẵn, không qua rào cản nào.','Buồn là mở ứng dụng mua sắm; chán là mở mạng xã hội.'],
 right:['S₂ → a: bộ máy kỹ thuật, tiếp thị liên tục sản xuất thống lạc dư thừa dưới dạng sản phẩm mới.','Phiên bản mới chỉ khác chút ít, nhưng quảng cáo khiến người ta thấy “phải có”.'],
 crossT:['S₁ → S₂: thương hiệu kích hoạt cả bộ máy nghiên cứu và quảng cáo. Mũi tên này giữ nguyên như ở bốn diễn ngôn kia.','Thương hiệu tung chiến dịch “thay đổi cuộc sống”, nhóm quảng cáo và nghiên cứu thị trường chạy theo.'],crossP:['a → $: phần dư quay về làm chủ thể bất mãn hơn, rồi vòng lặp chạy tiếp. Đây là chỗ thấy rõ nhất đối tượng a ám ảnh chủ thể.','Mở hộp xong thấy trống nên bạn đi tìm món kế tiếp.']}};
-const ARB=k=>{const a=AR[k],e=ARD[cur]&&ARD[cur][k],g=a.t.map(x=>'<p>'+x+'</p>').join(''),x=e&&(e[1]||(D[cur].dx&&D[cur].dx[k==='crossP'?1:0]));return e?'<p>'+e[0]+'</p><p class="ex"><b style="font-size:13px">Ví dụ.</b> '+x+'</p>'+(ARX[cur]&&ARX[cur][k]?'<p class="ex"><b style="font-size:13px">Ví dụ khác.</b> '+ARX[cur][k]+'</p>':'')+'<p class="note">'+(cur==='capitalist'&&k==='bottom'?'So với bốn diễn ngôn chuẩn:':'Cấu trúc chung của mũi tên này:')+'</p>'+g+(a.ex?'<p class="ex"><b style="font-size:13px">Ví dụ chung.</b> '+a.ex+'</p>':''):g+'<p class="ex"><b style="font-size:13px">Ví dụ.</b> '+a.ex+'</p>'};
+const ARB=k=>{const a=AR[k],e=ARD[cur]&&ARD[cur][k],g=a.t.map(x=>'<p>'+x+'</p>').join(''),x=e&&(e[1]||(D[cur].dx&&D[cur].dx[k==='crossP'?1:0]));return e?'<p>'+e[0]+'</p><p class="ex"><b style="font-size:13px">Ví dụ.</b> '+x+'</p>'+(ARX[cur]&&ARX[cur][k]?'<p class="ex"><b style="font-size:13px">Ví dụ khác.</b> '+ARX[cur][k]+'</p>':'')+'<p class="note">'+(k==='bottom'?(cur==='capitalist'?'So với bốn diễn ngôn chuẩn:':'Cấu trúc chung của quan hệ này:'):'Cấu trúc chung của mũi tên này:')+'</p>'+g+(a.ex?'<p class="ex"><b style="font-size:13px">Ví dụ chung.</b> '+a.ex+'</p>':''):g+'<p class="ex"><b style="font-size:13px">Ví dụ.</b> '+a.ex+'</p>'};
 AR.bar.t=['Vạch ngang tách bề mặt ý thức (tác nhân, cái khác) khỏi nền ẩn (sự thật, sản phẩm). Nó là sự kháng cự: ngăn sự thật trực tiếp tác động lên tác nhân và ngăn sản phẩm trực tiếp quay lại cái khác.','Nhờ có nó diễn ngôn mới ổn định, tức là che giấu được sự thật. Sự thật chỉ lọt qua dưới dạng lỡ lời, triệu chứng, tiền giả định ngầm, tức hai mũi tên chéo xuyên qua vạch.','Ở diễn ngôn Tư bản, vạch vẫn được viết trong công thức nhưng mất tác dụng chặn: mạch chạy kín, nên Lacan nói nó chạy quá nhanh và tự tiêu rụi.'];
 ARD.master.bar=['Vạch giấu $ khỏi S₁: ông chủ không được nhận mình chia cắt. Nó cũng giữ a tách khỏi S₂: phần dư không quay lại tay người làm ra nó.','Trong cuộc họp ông không bao giờ để lộ nỗi sợ, và phần lợi nhuận dôi ra không bao giờ quay lại bảng lương của thợ.'];
 ARD.university.bar=['Vạch giấu S₁ dưới S₂: mệnh lệnh không bao giờ được nói như mệnh lệnh. Nó cũng giữ $ tách khỏi a: sự chia cắt của người học không quay lại thành tiếng nói trong hệ thống.','Chỉ tiêu không in trong giáo trình, và nỗi lạc lối của sinh viên không thành nội dung của môn học nào.'];
@@ -646,7 +646,7 @@ const newCON=[
  ['$ · Chủ thể chia cắt','Không đồng nhất với cái tôi, với sự thiếu tự tin hay với mâu thuẫn tâm lý đơn lẻ. Dấu gạch đánh dấu việc chủ thể không trùng với chính mình do bị cái biểu đạt cấu thành.'],
  ['a · đối tượng a / thống lạc dư thừa (plus-de-jouir)','Objet petit a là nguyên nhân của ham muốn. Plus-de-jouir là thống lạc dư thừa, liên hệ với a khi a xuất hiện ở vị trí sản phẩm trong một số diễn ngôn. Hai khái niệm có liên hệ nhưng không hoán đổi tùy tiện. a cũng không phải món hàng hay “cái Thực” nói chung.'],
  ['Bốn vị trí','Tác nhân/vẻ ngoài cấu trúc (trên-trái), cái khác (trên-phải), sự thật (dưới-trái), sản phẩm (dưới-phải). Vị trí cố định; bốn ký hiệu luân phiên qua chúng theo phép quay một phần tư. “Cái khác” ở đây không đồng nhất máy móc với Autre viết hoa.'],
- ['Năm mũi tên và //','Năm mũi tên: tác nhân → cái khác; sự thật → tác nhân; sự thật → cái khác; cái khác → sản phẩm; sản phẩm → tác nhân. Dưới cùng là sản phẩm // sự thật: bất lực, không phải mũi tên thứ sáu.'],
+ ['Năm mũi tên và //','Năm mũi tên: tác nhân → cái khác; sự thật → tác nhân; sự thật → cái khác; cái khác → sản phẩm; sản phẩm → tác nhân. Dưới cùng là sản phẩm // sự thật: bất lực, không phải mũi tên thứ sáu; không diễn ngôn nào có mũi tên ở hàng này.'],
  ['Bất khả và bất lực','Bất khả (impossibility) là giới hạn cấu trúc của quan hệ tác nhân–cái khác. Bất lực (impotence) là sự đứt đoạn giữa sản phẩm và sự thật: sản phẩm không giải quyết được sự thật đã chống đỡ diễn ngôn. Không được dùng hai thuật ngữ như từ đồng nghĩa.'],
  ['Thứ tự quay','Ở đây dùng quy ước quay theo chiều kim đồng hồ: Chủ nhân → Cuồng loạn → Nhà phân tâm → Học thuật → Chủ nhân. Quay ngược chiều kim đồng hồ thì ra thứ tự Chủ nhân → Học thuật → Nhà phân tâm → Cuồng loạn → Chủ nhân. Hai chiều đều hợp lệ, chỉ cần nói rõ quy ước; đây không phải tiến trình lịch sử hay các giai đoạn phát triển tâm lý.'],
  ['Thống lạc (jouissance)','Không đồng nghĩa với niềm vui hay khoái lạc thông thường. Đây là khái niệm về một kiểu hưởng-thụ gắn với thân thể, lặp lại và phần vượt quá nguyên tắc khoái lạc; không nên đặt thống lạc cố định ở vị trí sản phẩm trong mọi công thức.'],
@@ -938,7 +938,7 @@ function render(){
     rot+='<p class="note"><b>Biến thể ngoài vòng quay:</b></p><div class="gen'+(cur==='capitalist'?' on':'')+'" data-disc="capitalist"><span>Biến thể · '+D.capitalist.n+'</span><span style="font-style:italic">'+cf(D.capitalist)+'</span></div>';
     rot+='<p class="note">Theo dõi S₁ khi quay theo chiều kim đồng hồ: tác nhân (Chủ nhân) → cái khác (Cuồng loạn) → sản phẩm (Nhà phân tâm) → sự thật (Học thuật). Chiều quay ngược cũng cho các hoán vị còn lại; điều quan trọng là luôn nói rõ quy ước.</p>';
     h+=SEC('rot','Bốn công thức và chiều quay',rot);
-    h+=SEC('how','Trước khi đọc','<p>Đây không phải bốn kiểu tính cách hay bốn chẩn đoán, mà là bốn cách con người nói chuyện và ràng buộc nhau: trong lớp học, công sở, phòng khám, cuộc cãi vã. Vị trí thì đứng yên, còn bốn ký hiệu S₁, S₂, $, a lần lượt đổi chỗ. Một người hay một tổ chức có thể trượt từ diễn ngôn này sang diễn ngôn khác tùy lúc.</p>'+(cur==='capitalist'?'<p><b>Cách đọc (riêng biến thể Tư bản):</b> không có mũi tên trên và không có dấu //. Các mũi tên còn lại nối thành một vòng khép kín $ → S₁ → S₂ → a → $, nên không có chỗ của bất khả hay bất lực.</p>':'<p><b>Cách đọc:</b> hàng trên là lời gọi đi từ tác nhân tới cái khác (chỗ của bất khả). Hàng dưới là sản phẩm // sự thật (chỗ của bất lực): ở đó không có mũi tên, chỉ có dấu //.</p>'));
+    h+=SEC('how','Trước khi đọc','<p>Đây không phải bốn kiểu tính cách hay bốn chẩn đoán, mà là bốn cách con người nói chuyện và ràng buộc nhau: trong lớp học, công sở, phòng khám, cuộc cãi vã. Vị trí thì đứng yên, còn bốn ký hiệu S₁, S₂, $, a lần lượt đổi chỗ. Một người hay một tổ chức có thể trượt từ diễn ngôn này sang diễn ngôn khác tùy lúc.</p>'+(cur==='capitalist'?'<p><b>Cách đọc (riêng biến thể Tư bản):</b> không có mũi tên trên và không có dấu //; hàng dưới vẫn không có mũi tên, như ở mọi diễn ngôn. Các mũi tên còn lại nối thành một vòng khép kín $ → S₁ → S₂ → a → $, nên không có chỗ của bất khả hay bất lực.</p>':'<p><b>Cách đọc:</b> hàng trên là lời gọi đi từ tác nhân tới cái khác (chỗ của bất khả). Hàng dưới là sản phẩm // sự thật (chỗ của bất lực): ở mọi diễn ngôn, hàng này không bao giờ có mũi tên, chỉ có dấu //.</p>'));
   }else if(view.type==='term'){
     const k=view.key,t=TE[k],pos=POSL.find(p=>hold[p]===k),i=POSL.indexOf(pos);
     h='<b style="color:'+hex(t.c)+'">'+T(k)+' · '+t.n+'</b><p>'+t.txt+'</p><p class="ex"><b style="font-size:13px">Ví dụ.</b> '+t.ex+'</p>'+X(t.x)+'<p>Ở đây nó giữ vị trí <i>'+PO[pos].n+'</i>: '+d.r[i].replace(/[.\s]+$/,'')+'.</p><p>'+DX[cur][pos][0]+'</p><p class="ex"><b style="font-size:13px">Ví dụ.</b> '+DX[cur][pos][1]+'</p><p class="note" style="margin-top:8px">Nó đi qua các vị trí:</p>';
@@ -1202,11 +1202,11 @@ Object.assign(AR.top,{
  ]
 });
 Object.assign(AR.bottom,{
- n:'Quan hệ dưới: sản phẩm // sự thật',s:'Bất lực cấu trúc',
- f:d=>'Sản phẩm // Sự thật (Không có mũi tên)',
+ n:'Quan hệ dưới: sản phẩm // sự thật',s:'Bất lực · hàng dưới không bao giờ có mũi tên',
+ f:d=>T(d.p)+' // '+T(d.t)+' (không có mũi tên)',
  t:[
- 'Đây KHÔNG phải là một mũi tên, mà là một sự đứt gãy. Sản phẩm được tạo ra không bao giờ có thể lấp đầy hay giải quyết được Sự thật đã sinh ra nó.',
- 'Bất lực nằm ở đây: Cỗ máy càng chạy, càng tạo ra nhiều sản phẩm, thì cái lõi sự thật ở dưới lại càng nguyên vẹn và bị che giấu. Sản phẩm không thể chữa lành vết thương cấu trúc.'
+ 'Ở hàng dưới của mọi diễn ngôn, giữa sản phẩm và sự thật không bao giờ có mũi tên. Sơ đồ chỉ vẽ dấu //, và hai vị trí này không được nối bằng bất kỳ đường nào, dù diễn ngôn nào đang vận hành và ký hiệu nào đang đứng ở đó.',
+ 'Dấu // là bất lực: cái được sản xuất ra không với tới, không lấp đầy và không giải quyết được sự thật đã sinh ra nó. Cỗ máy càng chạy, sản phẩm càng nhiều, còn nút thắt dưới vạch vẫn nguyên, nên diễn ngôn phải lặp lại. Phần dư không đi ngược xuống sự thật; nếu quay lại, nó quay bằng một đường khác: đường chéo lên tác nhân.'
  ]
 });
 Object.assign(AR.left,{
@@ -1663,11 +1663,12 @@ function scMap(sc){
   return h;
 }
 function scRecap(sc){
-  let h='<p class="note" style="margin:14px 0 2px">Bạn đã nói và làm gì ở từng bước:</p><ol class="screcap">';
+  let h='<p class="note" style="margin:14px 0 2px">Bạn đã nói và làm gì ở từng bước. Mỗi bước ghi diễn ngôn của cảnh lúc bạn lên tiếng, rồi diễn ngôn mà lời bạn đưa cảnh tới:</p><ol class="screcap">';
   SCS.trail.forEach((e,k)=>{
     if(e.i<0)return;
-    const n=sc.nodes[e.n],c=n.choices[e.i];
-    h+='<li><span class="rk">Bước '+(k+1)+' · <i style="color:'+(DCOL[n.d]||'inherit')+'">Diễn ngôn '+D[n.d].n+'</i></span><span class="rq">'+c.t+'</span>'
+    const n=sc.nodes[e.n],c=n.choices[e.i],nx=sc.nodes[c.go],dc=x=>'<i style="color:'+(DCOL[x]||'inherit')+'">'+D[x].n+'</i>';
+    const lab=n.d===nx.d?'ở lại Diễn ngôn '+dc(n.d):'Diễn ngôn '+dc(n.d)+' → '+dc(nx.d);
+    h+='<li><span class="rk">Bước '+(k+1)+' · '+lab+'</span><span class="rq">'+c.t+'</span>'
       +(c.fb?'<details><summary>Sơ đồ đã xoay thế nào</summary><p>'+c.fb+'</p></details>':'')
       +'<span class="lnk sm" role="button" tabindex="0" data-scact="rewind" data-i="'+k+'">↶ Thử lại từ bước này</span></li>';
   });
@@ -1695,7 +1696,7 @@ function scRoleBar(sc){
   let h='<div class="rolebar"><span class="rb-k">Bạn đang vào vai</span><span class="rb-n" style="'+scRC(sc.id,sc.role)+'">'+sc.me+'</span>';
   if(!isEnd)h+='<span class="rb-swg">'+others.map(o=>'<span class="rb-sw" role="button" tabindex="0" data-scact="role" data-r="'+o.r+'" style="'+scRC(sc.id,o.r)+'" title="Bắt đầu lại cảnh này ở vai '+o.n+'">⇄ Vào vai '+o.n+'</span>').join('')+'</span>';
   h+='</div>';
-  if(sc.role>0&&SCS.steps===1)h+='<p class="rolenote">Bạn đang ngồi ở phía bên kia của cảnh này. Mọi lựa chọn lần này là của <strong>'+sc.me+'</strong>, và người đối diện sẽ đáp theo cách bạn nói.</p>';
+  if(sc.role>0&&SCS.steps===1)h+='<p class="rolenote">Bạn đang ngồi ở phía bên kia của cảnh này. Mọi lựa chọn lần này là của <strong>'+sc.me+'</strong>, và những người còn lại sẽ phản ứng theo cách bạn nói hoặc làm.</p>';
   return h;
 }
 function scSwapCard(sc){
@@ -1758,14 +1759,14 @@ const LOOPNOTE='<p class="note" style="margin-top:0"><b>Vòng khép kín:</b> $ 
 // -- Quan hệ dưới: bốn diễn ngôn chuẩn giữ nguyên, Tư bản đọc như vòng khép kín --
 const B0={n:AR.bottom.n,s:AR.bottom.s,t:AR.bottom.t,ex:AR.bottom.ex,f:AR.bottom.f};
 const B1={
- n:'Quan hệ dưới: vòng khép kín',
- s:'Không còn bất lực · mạch khép kín',
- t:['Ở bốn diễn ngôn chuẩn, hàng dưới có dấu //: sản phẩm không với tới sự thật đã sinh ra nó. Đó là bất lực, và chính chỗ hở ấy làm mạch đứt, buộc diễn ngôn phải được khởi động lại từ lời gọi ở hàng trên.','Ở biến thể Tư bản, chỗ hở ấy được bịt lại: sự thiếu hụt không bị chặn ở đâu mà luôn được chuyển ngay thành lượt vận hành kế tiếp. Vì thế Lacan nói vòng này chạy trơn đến mức quá nhanh và tự thiêu, chứ không phải vì nó cuối cùng đã giải quyết được sự thiếu hụt.'],
+ n:'Quan hệ dưới: vẫn không có mũi tên',
+ s:'Không mũi tên · cũng không vẽ //',
+ t:['Quy tắc ở hàng dưới vẫn đúng với Tư bản: không có mũi tên sản phẩm → sự thật. Điểm khác là ở bốn diễn ngôn chuẩn, chỗ ấy được đánh dấu bằng dấu // (bất lực), còn ở Tư bản dấu // cũng không được vẽ.','Phần dư không dừng ở hàng dưới mà đi tiếp bằng đường chéo về chủ thể, nên sự thiếu hụt luôn được chuyển ngay thành lượt vận hành kế tiếp. Vì thế Lacan nói vòng này chạy trơn đến mức quá nhanh và tự thiêu, chứ không phải vì sự thiếu hụt đã được giải quyết.'],
  ex:''
 };
 ['n','s','t','ex'].forEach(k=>Object.defineProperty(AR.bottom,k,{get:()=>cur==='capitalist'?B1[k]:B0[k],configurable:true}));
-AR.bottom.f=d=>d===D.capitalist?'Không có // và không có mũi tên sản phẩm → sự thật: a quay thẳng về $, vòng $ → S₁ → S₂ → a → $ khép lại.':B0.f(d);
-ARD.capitalist.bottom=['Ở đây không có // và cũng không có mũi tên sản phẩm → sự thật. Phần dư a không dừng lại ở bất lực mà quay thẳng về chủ thể qua đường chéo a → $, nên mạch $ → S₁ → S₂ → a → $ khép kín: mỗi vị trí chỉ có một mũi tên vào và một mũi tên ra, và vòng chạy liên tục không có điểm nghỉ.','Mua món đồ mới xong, cảm giác hào hứng tan ngay, và chính chỗ trống ấy trở thành điểm xuất phát của lượt mua kế tiếp.'];
+AR.bottom.f=d=>d===D.capitalist?'Vẫn không có mũi tên sản phẩm → sự thật, và dấu // cũng không được vẽ: a đi tiếp bằng đường chéo về $, vòng $ → S₁ → S₂ → a → $ khép lại.':B0.f(d);
+ARD.capitalist.bottom=['Ở đây vẫn không có mũi tên sản phẩm → sự thật, và dấu // cũng không được vẽ. Phần dư a không dừng lại ở hàng dưới mà đi tiếp qua đường chéo a → $ về chủ thể, nên mạch $ → S₁ → S₂ → a → $ khép kín: mỗi vị trí chỉ có một mũi tên vào và một mũi tên ra, và vòng chạy liên tục không có điểm nghỉ.','Mua món đồ mới xong, cảm giác hào hứng tan ngay, và chính chỗ trống ấy trở thành điểm xuất phát của lượt mua kế tiếp.'];
 // -- bỏ hẳn nội dung mũi tên trên của Tư bản --
 delete ARD.capitalist.top;delete ARX.capitalist.top;
 delete IM.capitalist;delete IMP.capitalist;
